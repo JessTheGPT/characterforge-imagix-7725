@@ -4,12 +4,16 @@ import { PromoBar } from "../components/PromoBar";
 import { Sidebar } from "../components/Sidebar";
 import Header from "../components/Header";
 import { CreationCard } from "../components/CreationCard";
-import { QuickStartItem } from "../components/QuickStartItem";
 import { FeaturedAppCard } from "../components/FeaturedAppCard";
 import { ModelCard } from "../components/ModelCard";
-import { Video, Paintbrush, Grid, FileText, ArrowUpRight, ArrowRight, Search } from "lucide-react";
+import { Video, Paintbrush, Grid, FileText, ArrowRight, Search } from "lucide-react";
 
-const Index = () => {
+interface IndexProps {
+  isAuthenticated?: boolean;
+  onSignOut?: () => void;
+}
+
+const Index = ({ isAuthenticated = false, onSignOut }: IndexProps) => {
   // Add a handler to add the logo.svg file if it's missing
   useEffect(() => {
     // Check if the logo exists, if not create a simple one
@@ -32,8 +36,11 @@ const Index = () => {
       <PromoBar />
       <div className="flex flex-1">
         <Sidebar />
-        <div className="flex-1 flex flex-col">
-          <Header />
+        <div className="flex-1 flex flex-col ml-[232px]">
+          <Header 
+            isAuthenticated={isAuthenticated}
+            onSignOut={onSignOut}
+          />
           <div className="flex-1 overflow-auto">
             <main className="py-8 px-12">
               <h1 className="text-3xl font-bold text-white mb-8">

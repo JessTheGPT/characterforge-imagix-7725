@@ -72,7 +72,7 @@ export const Sidebar = () => {
   }
 
   return (
-    <div className="w-[232px] bg-sidebar min-h-screen flex flex-col border-r border-gray-800">
+    <div className="w-[232px] bg-sidebar h-screen flex flex-col border-r border-gray-800 fixed left-0 top-0 z-10">
       <div className="flex items-center justify-between p-4 border-b border-gray-800">
         <div className="flex items-center gap-2">
           <img src="/lovable-uploads/407e5ec8-9b67-42ee-acf0-b238e194aa64.png" alt="Logo" className="w-8 h-8" />
@@ -99,6 +99,12 @@ export const Sidebar = () => {
           isNew 
           isActive={activeItem === "Characters"}
           onClick={() => setActiveItem("Characters")}
+        />
+        <SidebarItem 
+          icon={<Video size={20} />} 
+          label="Storyboard" 
+          isActive={activeItem === "Storyboard"}
+          onClick={() => setActiveItem("Storyboard")}
         />
         <SidebarItem 
           icon={<Video size={20} />} 
