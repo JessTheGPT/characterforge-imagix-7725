@@ -14,7 +14,7 @@
     --popover: 0 0% 12%;
     --popover-foreground: 0 0% 100%;
 
-    --primary: 272 90% 60%;
+    --primary: 330 85% 60%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 0 0% 20%;
@@ -46,6 +46,17 @@
     
     --promo: 272 100% 60%;
     --promo-foreground: 0 0% 100%;
+
+    /* Landing page specific colors */
+    --landing-background: 220 14% 96%;
+    --landing-foreground: 222 84% 5%;
+    --landing-card: 0 0% 100%;
+    --landing-card-foreground: 222 84% 5%;
+    --landing-muted: 210 40% 98%;
+    --landing-muted-foreground: 215 20% 40%;
+    --landing-border: 214 32% 91%;
+    --landing-accent: 330 85% 60%;
+    --landing-accent-light: 330 85% 94%;
   }
 }
 

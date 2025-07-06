@@ -6,52 +6,37 @@ interface LandingProps {
 
 const Landing = ({ onGetStarted, onSignIn, onSignUp }: LandingProps) => {
   return (
-    <div className="min-h-screen" style={{
-      background: 'linear-gradient(135deg, #E8E8E8 0%, #F5F5F5 50%, #FFB6C1 100%)'
-    }}>
+    <div className="min-h-screen bg-landing-background text-landing-foreground">
       {/* Header */}
-      <header className="py-8">
-        <div className="max-w-6xl mx-auto px-6">
-          <nav className="flex justify-between items-center">
-            <a href="#" className="text-xl font-bold text-gray-800">
+      <header className="border-b border-landing-border bg-landing-card/50 backdrop-blur-sm sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <nav className="flex justify-between items-center h-16">
+            <div className="text-2xl font-bold text-landing-foreground">
               PhotoMe AI
-            </a>
-            <ul className="hidden md:flex gap-12 items-center">
-              <li>
-                <a href="#features" className="text-gray-800 hover:text-gray-600 transition-colors">
-                  <div className="font-semibold text-sm">How It Works</div>
-                  <div className="text-xs text-gray-600">Simple 3-step process</div>
-                </a>
-              </li>
-              <li>
-                <a href="#about" className="text-gray-800 hover:text-gray-600 transition-colors">
-                  <div className="font-semibold text-sm">Why Choose Us</div>
-                  <div className="text-xs text-gray-600">Skip the technical complexity</div>
-                </a>
-              </li>
-              <li>
-                <a href="#examples" className="text-gray-800 hover:text-gray-600 transition-colors">
-                  <div className="font-semibold text-sm">Examples</div>
-                  <div className="text-xs text-gray-600">See what's possible</div>
-                </a>
-              </li>
-              <li>
-                <a href="#pricing" className="text-gray-800 hover:text-gray-600 transition-colors">
-                  <div className="font-semibold text-sm">Pricing</div>
-                  <div className="text-xs text-gray-600">Simple, transparent costs</div>
-                </a>
-              </li>
-            </ul>
-            <div className="flex gap-3">
+            </div>
+            
+            <div className="hidden md:flex items-center space-x-8">
+              <a href="#features" className="text-landing-muted-foreground hover:text-landing-foreground transition-colors text-sm font-medium">
+                How It Works
+              </a>
+              <a href="#examples" className="text-landing-muted-foreground hover:text-landing-foreground transition-colors text-sm font-medium">
+                Examples
+              </a>
+              <a href="#pricing" className="text-landing-muted-foreground hover:text-landing-foreground transition-colors text-sm font-medium">
+                Pricing
+              </a>
+            </div>
+            
+            <div className="flex items-center space-x-3">
               <button 
                 onClick={onSignIn}
-                className="px-4 py-2 text-gray-800 border border-gray-300 rounded-md hover:bg-white/50 transition-colors"
+                className="px-4 py-2 text-sm font-medium text-landing-foreground hover:bg-landing-muted transition-colors rounded-md"
               >
                 Sign In
               </button>
               <button 
                 onClick={onSignUp}
-                className="px-4 py-2 text-white bg-pink-500 hover:bg-pink-600 rounded-md transition-colors"
+                className="px-4 py-2 text-sm font-medium bg-landing-accent text-white hover:bg-landing-accent/90 transition-colors rounded-md"
               >
                 Sign Up
               </button>
@@ -60,204 +45,220 @@ const Landing = ({ onGetStarted, onSignIn, onSignUp }: LandingProps) => {
         </div>
       </header>
 
-      {/* Main Content */}
-      <main className="max-w-6xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 py-16">
-          {/* Left Section */}
-          <div className="flex flex-col gap-10">
-            <div>
-              <p className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-4">
-                AI PHOTO GENERATION MADE SIMPLE
-              </p>
-              <h1 className="text-6xl lg:text-7xl font-black text-gray-800 leading-none mb-6">
-                Create Yourself in Any Scene.
-              </h1>
-              <p className="text-gray-600 text-lg leading-relaxed mb-8 max-w-md">
-                No need to learn LoRA training, prompt engineering, or technical parameters. 
-                We handle all the complexity behind the scenes so you can focus on creating amazing photos of yourself.
-              </p>
-            </div>
-            
-            <div className="flex flex-col gap-3">
-              <div className="flex items-center gap-2 text-sm text-gray-600">
-                <span>❌</span>
-                <span>Skip learning complex LoRA models</span>
-              </div>
-              <div className="flex items-center gap-2 text-sm text-gray-600">
-                <span>❌</span>
-                <span>No trial and error with parameters</span>
-              </div>
-              <div className="flex items-center gap-2 text-sm font-medium text-gray-800">
-                <span>✅</span>
-                <span>Professional results, first time</span>
-              </div>
-            </div>
-
-            <button 
-              onClick={onGetStarted}
-              className="w-36 h-36 rounded-full text-white font-semibold text-sm transition-all hover:scale-105 hover:shadow-lg self-start"
-              style={{
-                background: 'linear-gradient(45deg, #FF69B4, #FFB6C1)',
-                boxShadow: '0 10px 30px rgba(255, 105, 180, 0.3)'
-              }}
-            >
-              Get Started
-            </button>
-
-            <div className="bg-white/80 backdrop-blur-sm border border-white/30 rounded-2xl p-8 h-72 flex items-center justify-center text-4xl text-gray-400">
-              🎨 STUNNING PHOTOS DONE.
-            </div>
-          </div>
-
-          {/* Right Section */}
-          <div className="flex flex-col gap-8">
-            <div className="bg-white/90 backdrop-blur-sm border border-white/50 rounded-2xl p-8 text-center">
-              <div className="w-32 h-32 rounded-full mx-auto mb-6 flex items-center justify-center text-4xl text-white"
-                   style={{ background: 'linear-gradient(45deg, #FF69B4, #87CEEB)' }}>
-                🎨
-              </div>
-              <h2 className="text-2xl font-bold text-gray-800 mb-2">PhotoMe AI</h2>
-              <p className="text-sm font-medium text-gray-600 uppercase tracking-wide">
-                Professional AI Photo Generation
-              </p>
-            </div>
-
-            <div className="flex flex-col gap-5">
-              <div className="bg-white/90 backdrop-blur-sm border border-white/50 rounded-xl p-6">
-                <h3 className="text-lg font-bold text-gray-800 mb-2">Auto LoRA Training</h3>
-                <p className="text-sm text-gray-600 leading-relaxed">
-                  We automatically handle the complex LoRA model training from your photos
+      {/* Hero Section */}
+      <section className="relative py-24 lg:py-32">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="space-y-8">
+              <div className="space-y-6">
+                <div className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-landing-accent-light text-landing-accent">
+                  AI Photo Generation Made Simple
+                </div>
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-landing-foreground leading-tight">
+                  Create Yourself in 
+                  <span className="text-landing-accent"> Any Scene</span>
+                </h1>
+                <p className="text-lg text-landing-muted-foreground max-w-xl">
+                  Skip the technical complexity of LoRA training and prompt engineering. 
+                  We handle everything behind the scenes so you can focus on creating amazing photos.
                 </p>
               </div>
-              <div className="bg-white/90 backdrop-blur-sm border border-white/50 rounded-xl p-6">
-                <h3 className="text-lg font-bold text-gray-800 mb-2">Smart Prompting</h3>
-                <p className="text-sm text-gray-600 leading-relaxed">
-                  Our system optimizes prompts and parameters so you don't have to learn them
-                </p>
+              
+              <div className="space-y-3">
+                <div className="flex items-center text-sm text-landing-muted-foreground">
+                  <span className="mr-3 text-red-500">✗</span>
+                  No complex model training required
+                </div>
+                <div className="flex items-center text-sm text-landing-muted-foreground">
+                  <span className="mr-3 text-red-500">✗</span>
+                  No trial and error with parameters
+                </div>
+                <div className="flex items-center text-sm font-medium text-landing-foreground">
+                  <span className="mr-3 text-green-500">✓</span>
+                  Professional results, guaranteed
+                </div>
               </div>
-              <div className="bg-white/90 backdrop-blur-sm border border-white/50 rounded-xl p-6">
-                <h3 className="text-lg font-bold text-gray-800 mb-2">Professional Results</h3>
-                <p className="text-sm text-gray-600 leading-relaxed">
-                  Get high-quality photos without the expensive trial and error process
-                </p>
+
+              <button 
+                onClick={onGetStarted}
+                className="inline-flex items-center px-8 py-4 bg-landing-accent text-white font-semibold rounded-lg hover:bg-landing-accent/90 transition-all transform hover:scale-105 hover:shadow-lg"
+              >
+                Get Started Free
+              </button>
+            </div>
+
+            <div className="space-y-6">
+              <div className="bg-landing-card border border-landing-border rounded-2xl p-8 text-center shadow-sm">
+                <div className="w-20 h-20 bg-gradient-to-br from-landing-accent to-pink-400 rounded-2xl mx-auto mb-6 flex items-center justify-center text-2xl">
+                  🎨
+                </div>
+                <h3 className="text-xl font-semibold text-landing-foreground mb-2">PhotoMe AI</h3>
+                <p className="text-sm text-landing-muted-foreground">Professional AI Photo Generation</p>
+              </div>
+
+              <div className="grid grid-cols-1 gap-4">
+                <div className="bg-landing-card border border-landing-border rounded-xl p-6 shadow-sm">
+                  <h4 className="font-semibold text-landing-foreground mb-2">Auto LoRA Training</h4>
+                  <p className="text-sm text-landing-muted-foreground">
+                    Automatically handle complex model training from your photos
+                  </p>
+                </div>
+                <div className="bg-landing-card border border-landing-border rounded-xl p-6 shadow-sm">
+                  <h4 className="font-semibold text-landing-foreground mb-2">Smart Prompting</h4>
+                  <p className="text-sm text-landing-muted-foreground">
+                    Optimized prompts and parameters - no technical knowledge required
+                  </p>
+                </div>
+                <div className="bg-landing-card border border-landing-border rounded-xl p-6 shadow-sm">
+                  <h4 className="font-semibold text-landing-foreground mb-2">Professional Results</h4>
+                  <p className="text-sm text-landing-muted-foreground">
+                    High-quality photos without expensive trial and error
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
+      </section>
 
-        {/* Complexity Section */}
-        <div className="bg-white/90 backdrop-blur-sm border border-white/50 rounded-2xl p-10 my-16">
-          <h2 className="text-4xl font-black text-gray-800 text-center mb-4">
-            The Complexity We Handle For You
-          </h2>
-          <p className="text-gray-600 text-center mb-8">
-            Traditional AI photo generation requires deep technical knowledge. We abstract it all away.
-          </p>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-            <div>
-              <h4 className="text-lg font-bold text-red-600 mb-6">❌ The Traditional Way</h4>
-              <div className="space-y-3">
-                {[
-                  'Learn LoRA architecture and training',
-                  'Understand dataset preparation',
-                  'Configure training parameters',
-                  'Master prompt engineering',
-                  'Tune inference steps (20-50+)',
-                  'Adjust guidance scale (7-15)',
-                  'Write negative prompts',
-                  'Waste money on failed attempts',
-                  'Spend hours learning and experimenting'
-                ].map((item, index) => (
-                  <div key={index} className="flex items-center gap-3 text-sm text-gray-600">
-                    <span className="text-red-500">🔧</span>
-                    <span>{item}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            
-            <div>
-              <h4 className="text-lg font-bold text-green-600 mb-6">✅ With PhotoMe AI</h4>
-              <div className="space-y-3">
-                {[
-                  'Upload 5-10 photos of yourself',
-                  'Describe what you want in plain English',
-                  'Get professional results in minutes',
-                  'Perfect parameters automatically set',
-                  'No technical knowledge required',
-                  'Predictable, transparent pricing',
-                  'Unlimited revisions included',
-                  'Works on any device',
-                  'Consistent, high-quality results'
-                ].map((item, index) => (
-                  <div key={index} className="flex items-center gap-3 text-sm text-gray-600">
-                    <span className="text-green-500">📸</span>
-                    <span>{item}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
+      {/* How It Works Section */}
+      <section id="features" className="py-24 bg-landing-muted/30">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold text-landing-foreground mb-4">
+              How It Works
+            </h2>
+            <p className="text-lg text-landing-muted-foreground max-w-2xl mx-auto">
+              Three simple steps to create professional AI photos of yourself
+            </p>
           </div>
-        </div>
-
-        {/* How It Works Section */}
-        <div className="py-16" id="features">
-          <h2 className="text-5xl font-black text-gray-800 text-center mb-4">How It Works</h2>
-          <p className="text-gray-600 text-center mb-12">
-            We've simplified the entire process into three simple steps. No technical expertise required.
-          </p>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
                 number: '01',
-                title: 'Upload Your Photos',
-                description: 'Share 5-10 clear photos of yourself. We\'ll automatically optimize them for training.'
+                title: 'Upload Photos',
+                description: 'Share 5-10 clear photos of yourself. We automatically optimize them for training.'
               },
               {
                 number: '02',
                 title: 'Describe Your Vision',
-                description: 'Tell us what you want in plain English - we handle all the complex prompt engineering.'
+                description: 'Tell us what you want in plain English. We handle the complex prompt engineering.'
               },
               {
                 number: '03',
                 title: 'Get Perfect Results',
-                description: 'Receive professional-quality AI photos with perfect parameters set automatically.'
+                description: 'Receive professional-quality AI photos with perfect parameters automatically set.'
               }
             ].map((step, index) => (
-              <div key={index} className="bg-white/90 backdrop-blur-sm border border-white/50 rounded-xl p-8 text-center">
-                <div className="text-2xl font-bold text-pink-500 mb-4">{step.number}</div>
-                <h3 className="text-lg font-bold text-gray-800 mb-3">{step.title}</h3>
-                <p className="text-sm text-gray-600 leading-relaxed">{step.description}</p>
+              <div key={index} className="bg-landing-card border border-landing-border rounded-xl p-8 text-center shadow-sm">
+                <div className="w-12 h-12 bg-landing-accent text-white rounded-lg mx-auto mb-6 flex items-center justify-center font-bold text-lg">
+                  {step.number}
+                </div>
+                <h3 className="text-lg font-semibold text-landing-foreground mb-3">{step.title}</h3>
+                <p className="text-landing-muted-foreground">{step.description}</p>
               </div>
             ))}
           </div>
         </div>
+      </section>
 
-        {/* Testimonial Section */}
-        <div className="bg-white/90 backdrop-blur-sm border border-white/50 rounded-2xl p-10 text-center my-16">
-          <p className="text-lg text-gray-800 font-medium mb-6 leading-relaxed">
-            "I tried doing this myself for weeks - learning about LoRA training, prompt engineering, all the technical stuff. 
-            PhotoMe AI gave me better results in 10 minutes than I got in weeks of trying!"
-          </p>
-          <p className="text-sm font-semibold text-gray-600">- Sarah, Content Creator</p>
+      {/* Comparison Section */}
+      <section className="py-24">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="bg-landing-card border border-landing-border rounded-2xl p-8 lg:p-12 shadow-sm">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl sm:text-4xl font-bold text-landing-foreground mb-4">
+                Skip The Technical Complexity
+              </h2>
+              <p className="text-lg text-landing-muted-foreground">
+                Traditional AI photo generation requires deep expertise. We handle it all for you.
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <div>
+                <h3 className="text-lg font-semibold text-red-600 mb-6 flex items-center">
+                  <span className="mr-2">❌</span>
+                  The Traditional Way
+                </h3>
+                <div className="space-y-3">
+                  {[
+                    'Learn LoRA architecture and training',
+                    'Understand dataset preparation',
+                    'Configure training parameters',
+                    'Master prompt engineering',
+                    'Tune inference steps (20-50+)',
+                    'Adjust guidance scale (7-15)',
+                    'Write negative prompts',
+                    'Waste money on failed attempts'
+                  ].map((item, index) => (
+                    <div key={index} className="flex items-center text-landing-muted-foreground">
+                      <span className="mr-3 text-red-500">•</span>
+                      <span className="text-sm">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              
+              <div>
+                <h3 className="text-lg font-semibold text-green-600 mb-6 flex items-center">
+                  <span className="mr-2">✅</span>
+                  With PhotoMe AI
+                </h3>
+                <div className="space-y-3">
+                  {[
+                    'Upload 5-10 photos of yourself',
+                    'Describe what you want in plain English',
+                    'Get professional results in minutes',
+                    'Perfect parameters automatically set',
+                    'No technical knowledge required',
+                    'Predictable, transparent pricing',
+                    'Unlimited revisions included',
+                    'Consistent, high-quality results'
+                  ].map((item, index) => (
+                    <div key={index} className="flex items-center text-landing-muted-foreground">
+                      <span className="mr-3 text-green-500">•</span>
+                      <span className="text-sm">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </section>
 
-        {/* CTA Section */}
-        <div className="text-center py-16">
+      {/* Testimonial Section */}
+      <section className="py-24 bg-landing-muted/30">
+        <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+          <div className="bg-landing-card border border-landing-border rounded-2xl p-8 lg:p-12 shadow-sm">
+            <blockquote className="text-xl lg:text-2xl font-medium text-landing-foreground mb-6 leading-relaxed">
+              "I tried doing this myself for weeks - learning about LoRA training, prompt engineering, all the technical stuff. 
+              PhotoMe AI gave me better results in 10 minutes than I got in weeks of trying!"
+            </blockquote>
+            <cite className="text-landing-muted-foreground font-medium">— Sarah, Content Creator</cite>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-24">
+        <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+          <h2 className="text-3xl sm:text-4xl font-bold text-landing-foreground mb-6">
+            Ready to Create Amazing Photos?
+          </h2>
+          <p className="text-lg text-landing-muted-foreground mb-8">
+            Join thousands of creators who've discovered the easiest way to generate professional AI photos.
+          </p>
           <button 
             onClick={onGetStarted}
-            className="px-10 py-4 text-white font-semibold rounded-full transition-all hover:-translate-y-1 hover:shadow-lg"
-            style={{
-              background: 'linear-gradient(135deg, #FF69B4, #FFB6C1)',
-              boxShadow: '0 10px 30px rgba(255, 105, 180, 0.3)'
-            }}
+            className="inline-flex items-center px-8 py-4 bg-landing-accent text-white font-semibold rounded-lg hover:bg-landing-accent/90 transition-all transform hover:scale-105 hover:shadow-lg text-lg"
           >
-            Start Creating Your Photos Now
+            Start Creating Now
           </button>
         </div>
-      </main>
+      </section>
     </div>
   );
 };

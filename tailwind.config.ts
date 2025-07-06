@@ -65,6 +65,18 @@ export default {
         },
         promo: 'hsl(var(--promo))',
         'promo-foreground': 'hsl(var(--promo-foreground))',
+        
+        // Landing page colors
+        'landing-background': 'hsl(var(--landing-background))',
+        'landing-foreground': 'hsl(var(--landing-foreground))',
+        'landing-card': 'hsl(var(--landing-card))',
+        'landing-card-foreground': 'hsl(var(--landing-card-foreground))',
+        'landing-muted': 'hsl(var(--landing-muted))',
+        'landing-muted-foreground': 'hsl(var(--landing-muted-foreground))',
+        'landing-border': 'hsl(var(--landing-border))',
+        'landing-accent': 'hsl(var(--landing-accent))',
+        'landing-accent-light': 'hsl(var(--landing-accent-light))',
+        
         'blue-card': '#1D8FFF',
         'yellow-card': '#FFD426',
         'icon-blue': '#0080FF',
