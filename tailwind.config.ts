@@ -27,15 +27,25 @@ export default {
         foreground: 'hsl(var(--foreground))',
         primary: {
           DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))'
+          foreground: 'hsl(var(--primary-foreground))',
+          hover: 'hsl(var(--primary-hover))'
         },
         secondary: {
           DEFAULT: 'hsl(var(--secondary))',
-          foreground: 'hsl(var(--secondary-foreground))'
+          foreground: 'hsl(var(--secondary-foreground))',
+          hover: 'hsl(var(--secondary-hover))'
         },
         destructive: {
           DEFAULT: 'hsl(var(--destructive))',
           foreground: 'hsl(var(--destructive-foreground))'
+        },
+        success: {
+          DEFAULT: 'hsl(var(--success))',
+          foreground: 'hsl(var(--success-foreground))'
+        },
+        warning: {
+          DEFAULT: 'hsl(var(--warning))',
+          foreground: 'hsl(var(--warning-foreground))'
         },
         muted: {
           DEFAULT: 'hsl(var(--muted))',
@@ -66,29 +76,43 @@ export default {
         promo: 'hsl(var(--promo))',
         'promo-foreground': 'hsl(var(--promo-foreground))',
         
-        // Landing page colors
-        'landing-background': 'hsl(var(--landing-background))',
-        'landing-foreground': 'hsl(var(--landing-foreground))',
-        'landing-card': 'hsl(var(--landing-card))',
-        'landing-card-foreground': 'hsl(var(--landing-card-foreground))',
-        'landing-muted': 'hsl(var(--landing-muted))',
-        'landing-muted-foreground': 'hsl(var(--landing-muted-foreground))',
-        'landing-border': 'hsl(var(--landing-border))',
-        'landing-accent': 'hsl(var(--landing-accent))',
-        'landing-accent-light': 'hsl(var(--landing-accent-light))',
+        // Semantic System Colors
+        'brand-blue': 'hsl(217 91% 60%)',
+        'brand-blue-hover': 'hsl(217 91% 50%)',
+        'brand-yellow': 'hsl(45 93% 47%)',
+        'brand-yellow-hover': 'hsl(45 93% 37%)',
         
-        'blue-card': '#1D8FFF',
-        'yellow-card': '#FFD426',
-        'icon-blue': '#0080FF',
-        'icon-purple': '#B22CFF',
-        'icon-green': '#00A67E',
-        'icon-yellow': '#FFB800',
-        'icon-pink': '#FF3EA5',
+        // Glass effects
+        'glass-bg': 'hsl(var(--glass-background))',
+        'glass-border': 'hsl(var(--glass-border))',
       },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)'
+        sm: 'calc(var(--radius) - 4px)',
+        xl: 'calc(var(--radius) + 4px)',
+        '2xl': 'calc(var(--radius) + 8px)',
+        '3xl': 'calc(var(--radius) + 12px)'
+      },
+      spacing: {
+        '18': '4.5rem',
+        '22': '5.5rem',
+        '26': '6.5rem',
+        '30': '7.5rem'
+      },
+      fontFamily: {
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        display: ['Inter', 'system-ui', 'sans-serif'],
+      },
+      fontSize: {
+        'display-2xl': ['4.5rem', { lineHeight: '1.1', letterSpacing: '-0.02em' }],
+        'display-xl': ['3.75rem', { lineHeight: '1.1', letterSpacing: '-0.02em' }],
+        'display-lg': ['3rem', { lineHeight: '1.2', letterSpacing: '-0.02em' }],
+        'display-md': ['2.25rem', { lineHeight: '1.2', letterSpacing: '-0.02em' }],
+        'display-sm': ['1.875rem', { lineHeight: '1.3', letterSpacing: '-0.02em' }],
+      },
+      backdropBlur: {
+        xs: '2px',
       },
       keyframes: {
         'accordion-down': {

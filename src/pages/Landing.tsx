@@ -1,122 +1,171 @@
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Sparkles, CheckCircle, X, ArrowRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { InteractiveCard } from '@/components/ui/interactive-card';
+import { MotionWrapper } from '@/components/ui/motion-wrapper';
+
 interface LandingProps {
   onGetStarted: () => void;
   onSignIn: () => void;
   onSignUp: () => void;
 }
 
-const Landing = ({ onGetStarted, onSignIn, onSignUp }: LandingProps) => {
+const Landing: React.FC<LandingProps> = ({ onGetStarted, onSignIn, onSignUp }) => {
   return (
-    <div className="min-h-screen bg-landing-background text-landing-foreground">
+    <div className="min-h-screen bg-background text-foreground">
       {/* Header */}
-      <header className="border-b border-landing-border bg-landing-card/50 backdrop-blur-sm sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <motion.header
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+        className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-xl"
+      >
+        <div className="container mx-auto px-6 lg:px-8">
           <nav className="flex justify-between items-center h-16">
-            <div className="text-2xl font-bold text-landing-foreground">
-              PhotoMe AI
-            </div>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="flex items-center space-x-3"
+            >
+              <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+                <span className="text-white font-bold text-sm">P</span>
+              </div>
+              <span className="text-xl font-bold text-foreground">PhotoMe AI</span>
+            </motion.div>
             
             <div className="hidden md:flex items-center space-x-8">
-              <a href="#features" className="text-landing-muted-foreground hover:text-landing-foreground transition-colors text-sm font-medium">
+              <a href="#features" className="text-muted-foreground hover:text-foreground transition-colors text-sm font-medium">
                 How It Works
               </a>
-              <a href="#examples" className="text-landing-muted-foreground hover:text-landing-foreground transition-colors text-sm font-medium">
+              <a href="#examples" className="text-muted-foreground hover:text-foreground transition-colors text-sm font-medium">
                 Examples
               </a>
-              <a href="#pricing" className="text-landing-muted-foreground hover:text-landing-foreground transition-colors text-sm font-medium">
+              <a href="#pricing" className="text-muted-foreground hover:text-foreground transition-colors text-sm font-medium">
                 Pricing
               </a>
             </div>
             
             <div className="flex items-center space-x-3">
-              <button 
+              <Button 
                 onClick={onSignIn}
-                className="px-4 py-2 text-sm font-medium text-landing-foreground hover:bg-landing-muted transition-colors rounded-md"
+                variant="ghost"
+                size="sm"
               >
                 Sign In
-              </button>
-              <button 
+              </Button>
+              <Button 
                 onClick={onSignUp}
-                className="px-4 py-2 text-sm font-medium bg-landing-accent text-white hover:bg-landing-accent/90 transition-colors rounded-md"
+                variant="default"
+                size="sm"
               >
                 Sign Up
-              </button>
+              </Button>
             </div>
           </nav>
         </div>
-      </header>
+      </motion.header>
 
       {/* Hero Section */}
-      <section className="relative py-24 lg:py-32">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <section className="relative py-24 lg:py-32 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5" />
+        
+        <div className="container mx-auto px-6 lg:px-8 relative">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-8">
+            {/* Left Column - Content */}
+            <MotionWrapper type="slideUp" className="space-y-8">
               <div className="space-y-6">
-                <div className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-landing-accent-light text-landing-accent">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.2, duration: 0.5 }}
+                  className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-primary/10 text-primary border border-primary/20"
+                >
+                  <Sparkles className="h-4 w-4 mr-2" />
                   AI Photo Generation Made Simple
-                </div>
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-landing-foreground leading-tight">
-                  Create Yourself in 
-                  <span className="text-landing-accent"> Any Scene</span>
+                </motion.div>
+                
+                <h1 className="text-display-lg font-bold text-foreground leading-tight">
+                  Create Yourself in{" "}
+                  <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                    Any Scene
+                  </span>
                 </h1>
-                <p className="text-lg text-landing-muted-foreground max-w-xl">
+                
+                <p className="text-lg text-muted-foreground max-w-xl leading-relaxed">
                   Skip the technical complexity of LoRA training and prompt engineering. 
                   We handle everything behind the scenes so you can focus on creating amazing photos.
                 </p>
               </div>
               
-              <div className="space-y-3">
-                <div className="flex items-center text-sm text-landing-muted-foreground">
-                  <span className="mr-3 text-red-500">✗</span>
+              <div className="space-y-4">
+                <div className="flex items-center text-sm text-muted-foreground">
+                  <X className="h-5 w-5 mr-3 text-destructive" />
                   No complex model training required
                 </div>
-                <div className="flex items-center text-sm text-landing-muted-foreground">
-                  <span className="mr-3 text-red-500">✗</span>
+                <div className="flex items-center text-sm text-muted-foreground">
+                  <X className="h-5 w-5 mr-3 text-destructive" />
                   No trial and error with parameters
                 </div>
-                <div className="flex items-center text-sm font-medium text-landing-foreground">
-                  <span className="mr-3 text-green-500">✓</span>
+                <div className="flex items-center text-sm font-medium text-foreground">
+                  <CheckCircle className="h-5 w-5 mr-3 text-success" />
                   Professional results, guaranteed
                 </div>
               </div>
 
-              <button 
+              <Button 
                 onClick={onGetStarted}
-                className="inline-flex items-center px-8 py-4 bg-landing-accent text-white font-semibold rounded-lg hover:bg-landing-accent/90 transition-all transform hover:scale-105 hover:shadow-lg"
+                variant="gradient"
+                size="lg"
+                className="group gap-2"
               >
                 Get Started Free
-              </button>
-            </div>
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Button>
+            </MotionWrapper>
 
-            <div className="space-y-6">
-              <div className="bg-landing-card border border-landing-border rounded-2xl p-8 text-center shadow-sm">
-                <div className="w-20 h-20 bg-gradient-to-br from-landing-accent to-pink-400 rounded-2xl mx-auto mb-6 flex items-center justify-center text-2xl">
+            {/* Right Column - Visual */}
+            <MotionWrapper type="slideLeft" delay={0.3} className="space-y-6">
+              <InteractiveCard variant="glass" className="p-8 text-center">
+                <motion.div
+                  animate={{ rotate: [0, 5, -5, 0] }}
+                  transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                  className="w-20 h-20 bg-gradient-to-br from-primary to-secondary rounded-2xl mx-auto mb-6 flex items-center justify-center text-2xl"
+                >
                   🎨
-                </div>
-                <h3 className="text-xl font-semibold text-landing-foreground mb-2">PhotoMe AI</h3>
-                <p className="text-sm text-landing-muted-foreground">Professional AI Photo Generation</p>
-              </div>
+                </motion.div>
+                <h3 className="text-xl font-semibold text-foreground mb-2">PhotoMe AI</h3>
+                <p className="text-sm text-muted-foreground">Professional AI Photo Generation</p>
+              </InteractiveCard>
 
               <div className="grid grid-cols-1 gap-4">
-                <div className="bg-landing-card border border-landing-border rounded-xl p-6 shadow-sm">
-                  <h4 className="font-semibold text-landing-foreground mb-2">Auto LoRA Training</h4>
-                  <p className="text-sm text-landing-muted-foreground">
-                    Automatically handle complex model training from your photos
-                  </p>
-                </div>
-                <div className="bg-landing-card border border-landing-border rounded-xl p-6 shadow-sm">
-                  <h4 className="font-semibold text-landing-foreground mb-2">Smart Prompting</h4>
-                  <p className="text-sm text-landing-muted-foreground">
-                    Optimized prompts and parameters - no technical knowledge required
-                  </p>
-                </div>
-                <div className="bg-landing-card border border-landing-border rounded-xl p-6 shadow-sm">
-                  <h4 className="font-semibold text-landing-foreground mb-2">Professional Results</h4>
-                  <p className="text-sm text-landing-muted-foreground">
-                    High-quality photos without expensive trial and error
-                  </p>
-                </div>
+                {[
+                  {
+                    title: "Auto LoRA Training",
+                    description: "Automatically handle complex model training from your photos",
+                    delay: 0.1
+                  },
+                  {
+                    title: "Smart Prompting", 
+                    description: "Optimized prompts and parameters - no technical knowledge required",
+                    delay: 0.2
+                  },
+                  {
+                    title: "Professional Results",
+                    description: "High-quality photos without expensive trial and error",
+                    delay: 0.3
+                  }
+                ].map((feature, index) => (
+                  <MotionWrapper key={index} type="slideUp" delay={feature.delay}>
+                    <InteractiveCard variant="glass" className="p-6">
+                      <h4 className="font-semibold text-foreground mb-2">{feature.title}</h4>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        {feature.description}
+                      </p>
+                    </InteractiveCard>
+                  </MotionWrapper>
+                ))}
               </div>
-            </div>
+            </MotionWrapper>
           </div>
         </div>
       </section>
