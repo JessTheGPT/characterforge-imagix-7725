@@ -1,105 +1,63 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { PromoBar } from "@/components/layout/PromoBar";
-import { ModernHeader } from "@/components/layout/ModernHeader";
-import { ModernSidebar } from "@/components/layout/ModernSidebar";
-import { CreationCards } from "@/components/dashboard/CreationCards";
-import Landing from "./pages/Landing";
-import Auth from "./pages/Auth";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
+import { User } from "@supabase/supabase-js";
+import Index from "@/pages/Index";
+import Landing from "@/pages/Landing";
+import Auth from "@/pages/Auth";
+import Settings from "@/pages/Settings";
+import Onboarding from "@/pages/Onboarding";
+import NotFound from "@/pages/NotFound";
 
 const queryClient = new QueryClient();
 
 const App = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [authMode, setAuthMode] = useState<'signin' | 'signup'>('signin');
-  const [currentView, setCurrentView] = useState<'landing' | 'auth' | 'dashboard'>('landing');
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  const handleGetStarted = () => {
-    setAuthMode('signup');
-    setCurrentView('auth');
-  };
+  useEffect(() => {
+    // Check active session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ?? null);
+      setLoading(false);
+    });
 
-  const handleSignIn = () => {
-    setAuthMode('signin');
-    setCurrentView('auth');
-  };
+    // Listen for auth changes
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+    });
 
-  const handleSignUp = () => {
-    setAuthMode('signup');
-    setCurrentView('auth');
-  };
+    return () => subscription.unsubscribe();
+  }, []);
 
-  const handleAuthSuccess = () => {
-    setIsAuthenticated(true);
-    setCurrentView('dashboard');
-  };
-
-  const handleSignOut = () => {
-    setIsAuthenticated(false);
-    setCurrentView('landing');
-  };
-
-  const handleAuthCancel = () => {
-    setCurrentView('landing');
-  };
-
-  const renderCurrentView = () => {
-    if (currentView === 'auth') {
-      return (
-        <Auth 
-          initialMode={authMode}
-          onSuccess={handleAuthSuccess}
-          onCancel={handleAuthCancel}
-        />
-      );
-    }
-
-    if (currentView === 'dashboard' || isAuthenticated) {
-      return (
-        <div className="min-h-screen bg-background">
-          <PromoBar />
-          <ModernHeader
-            isAuthenticated={true}
-            onSignIn={() => {}}
-            onSignUp={() => {}}
-            onSignOut={handleSignOut}
-          />
-          <div className="flex">
-            <ModernSidebar
-              isCollapsed={sidebarCollapsed}
-              onToggleCollapse={() => setSidebarCollapsed(!sidebarCollapsed)}
-            />
-            <main
-              className="flex-1 transition-all duration-300 ease-in-out p-8"
-              style={{ marginLeft: sidebarCollapsed ? '80px' : '280px' }}
-            >
-              <CreationCards />
-            </main>
-          </div>
-        </div>
-      );
-    }
-
+  if (loading) {
     return (
-      <Landing 
-        onGetStarted={handleGetStarted}
-        onSignIn={handleSignIn}
-        onSignUp={handleSignUp}
-      />
+      <div className="flex items-center justify-center min-h-screen bg-background">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+      </div>
     );
-  };
+  }
 
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        {renderCurrentView()}
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={user ? <Index /> : <Landing />} />
+            <Route path="/auth" element={!user ? <Auth /> : <Navigate to="/" replace />} />
+            <Route path="/settings" element={user ? <Settings /> : <Navigate to="/auth" replace />} />
+            <Route path="/onboarding" element={user ? <Onboarding /> : <Navigate to="/auth" replace />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
   );

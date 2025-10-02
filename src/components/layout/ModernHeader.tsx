@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { User, Plus, LogOut, Settings } from 'lucide-react';
+import { User, Plus, LogOut, Settings as SettingsIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -11,6 +11,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { useIsMobile } from '@/hooks/useResponsive';
+import { useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 
 interface ModernHeaderProps {
@@ -29,6 +30,7 @@ export const ModernHeader: React.FC<ModernHeaderProps> = ({
   onCreateClick,
 }) => {
   const isMobile = useIsMobile();
+  const navigate = useNavigate();
 
   return (
     <motion.header
@@ -42,7 +44,8 @@ export const ModernHeader: React.FC<ModernHeaderProps> = ({
           {/* Logo */}
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="flex items-center space-x-2"
+            className="flex items-center space-x-2 cursor-pointer"
+            onClick={() => navigate('/')}
           >
             <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
               <span className="text-white font-bold text-sm">P</span>
@@ -79,12 +82,18 @@ export const ModernHeader: React.FC<ModernHeaderProps> = ({
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end" className="w-56">
-                    <DropdownMenuItem className="cursor-pointer">
+                    <DropdownMenuItem 
+                      className="cursor-pointer"
+                      onClick={() => navigate('/settings')}
+                    >
                       <User className="mr-2 h-4 w-4" />
                       My Account
                     </DropdownMenuItem>
-                    <DropdownMenuItem className="cursor-pointer">
-                      <Settings className="mr-2 h-4 w-4" />
+                    <DropdownMenuItem 
+                      className="cursor-pointer"
+                      onClick={() => navigate('/settings')}
+                    >
+                      <SettingsIcon className="mr-2 h-4 w-4" />
                       Settings
                     </DropdownMenuItem>
                     <DropdownMenuSeparator />

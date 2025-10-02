@@ -1,1 +1,7 @@
 project_id = "zqcfunbdlidmfqmltozp"
+
+[functions.train-lora]
+verify_jwt = true
+
+[functions.check-training-status]
+verify_jwt = true

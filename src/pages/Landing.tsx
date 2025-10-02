@@ -4,14 +4,11 @@ import { Sparkles, CheckCircle, X, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { InteractiveCard } from '@/components/ui/interactive-card';
 import { MotionWrapper } from '@/components/ui/motion-wrapper';
+import { useNavigate } from 'react-router-dom';
 
-interface LandingProps {
-  onGetStarted: () => void;
-  onSignIn: () => void;
-  onSignUp: () => void;
-}
+const Landing: React.FC = () => {
+  const navigate = useNavigate();
 
-const Landing: React.FC<LandingProps> = ({ onGetStarted, onSignIn, onSignUp }) => {
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Header */}
@@ -47,14 +44,14 @@ const Landing: React.FC<LandingProps> = ({ onGetStarted, onSignIn, onSignUp }) =
             
             <div className="flex items-center space-x-3">
               <Button 
-                onClick={onSignIn}
+                onClick={() => navigate('/auth')}
                 variant="ghost"
                 size="sm"
               >
                 Sign In
               </Button>
               <Button 
-                onClick={onSignUp}
+                onClick={() => navigate('/auth')}
                 variant="default"
                 size="sm"
               >
@@ -113,7 +110,7 @@ const Landing: React.FC<LandingProps> = ({ onGetStarted, onSignIn, onSignUp }) =
               </div>
 
               <Button 
-                onClick={onGetStarted}
+                onClick={() => navigate('/auth')}
                 variant="gradient"
                 size="lg"
                 className="group gap-2"
@@ -171,13 +168,13 @@ const Landing: React.FC<LandingProps> = ({ onGetStarted, onSignIn, onSignUp }) =
       </section>
 
       {/* How It Works Section */}
-      <section id="features" className="py-24 bg-landing-muted/30">
+      <section id="features" className="py-24 bg-surface/30">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-landing-foreground mb-4">
+            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
               How It Works
             </h2>
-            <p className="text-lg text-landing-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Three simple steps to create professional AI photos of yourself
             </p>
           </div>
@@ -200,93 +197,14 @@ const Landing: React.FC<LandingProps> = ({ onGetStarted, onSignIn, onSignUp }) =
                 description: 'Receive professional-quality AI photos with perfect parameters automatically set.'
               }
             ].map((step, index) => (
-              <div key={index} className="bg-landing-card border border-landing-border rounded-xl p-8 text-center shadow-sm">
-                <div className="w-12 h-12 bg-landing-accent text-white rounded-lg mx-auto mb-6 flex items-center justify-center font-bold text-lg">
+              <div key={index} className="bg-card border border-border rounded-xl p-8 text-center shadow-sm">
+                <div className="w-12 h-12 bg-primary text-white rounded-lg mx-auto mb-6 flex items-center justify-center font-bold text-lg">
                   {step.number}
                 </div>
-                <h3 className="text-lg font-semibold text-landing-foreground mb-3">{step.title}</h3>
-                <p className="text-landing-muted-foreground">{step.description}</p>
+                <h3 className="text-lg font-semibold text-foreground mb-3">{step.title}</h3>
+                <p className="text-muted-foreground">{step.description}</p>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Comparison Section */}
-      <section className="py-24">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="bg-landing-card border border-landing-border rounded-2xl p-8 lg:p-12 shadow-sm">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl sm:text-4xl font-bold text-landing-foreground mb-4">
-                Skip The Technical Complexity
-              </h2>
-              <p className="text-lg text-landing-muted-foreground">
-                Traditional AI photo generation requires deep expertise. We handle it all for you.
-              </p>
-            </div>
-            
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-              <div>
-                <h3 className="text-lg font-semibold text-red-600 mb-6 flex items-center">
-                  <span className="mr-2">❌</span>
-                  The Traditional Way
-                </h3>
-                <div className="space-y-3">
-                  {[
-                    'Learn LoRA architecture and training',
-                    'Understand dataset preparation',
-                    'Configure training parameters',
-                    'Master prompt engineering',
-                    'Tune inference steps (20-50+)',
-                    'Adjust guidance scale (7-15)',
-                    'Write negative prompts',
-                    'Waste money on failed attempts'
-                  ].map((item, index) => (
-                    <div key={index} className="flex items-center text-landing-muted-foreground">
-                      <span className="mr-3 text-red-500">•</span>
-                      <span className="text-sm">{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              
-              <div>
-                <h3 className="text-lg font-semibold text-green-600 mb-6 flex items-center">
-                  <span className="mr-2">✅</span>
-                  With PhotoMe AI
-                </h3>
-                <div className="space-y-3">
-                  {[
-                    'Upload 5-10 photos of yourself',
-                    'Describe what you want in plain English',
-                    'Get professional results in minutes',
-                    'Perfect parameters automatically set',
-                    'No technical knowledge required',
-                    'Predictable, transparent pricing',
-                    'Unlimited revisions included',
-                    'Consistent, high-quality results'
-                  ].map((item, index) => (
-                    <div key={index} className="flex items-center text-landing-muted-foreground">
-                      <span className="mr-3 text-green-500">•</span>
-                      <span className="text-sm">{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonial Section */}
-      <section className="py-24 bg-landing-muted/30">
-        <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-          <div className="bg-landing-card border border-landing-border rounded-2xl p-8 lg:p-12 shadow-sm">
-            <blockquote className="text-xl lg:text-2xl font-medium text-landing-foreground mb-6 leading-relaxed">
-              "I tried doing this myself for weeks - learning about LoRA training, prompt engineering, all the technical stuff. 
-              PhotoMe AI gave me better results in 10 minutes than I got in weeks of trying!"
-            </blockquote>
-            <cite className="text-landing-muted-foreground font-medium">— Sarah, Content Creator</cite>
           </div>
         </div>
       </section>
@@ -294,18 +212,21 @@ const Landing: React.FC<LandingProps> = ({ onGetStarted, onSignIn, onSignUp }) =
       {/* CTA Section */}
       <section className="py-24">
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold text-landing-foreground mb-6">
+          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">
             Ready to Create Amazing Photos?
           </h2>
-          <p className="text-lg text-landing-muted-foreground mb-8">
+          <p className="text-lg text-muted-foreground mb-8">
             Join thousands of creators who've discovered the easiest way to generate professional AI photos.
           </p>
-          <button 
-            onClick={onGetStarted}
-            className="inline-flex items-center px-8 py-4 bg-landing-accent text-white font-semibold rounded-lg hover:bg-landing-accent/90 transition-all transform hover:scale-105 hover:shadow-lg text-lg"
+          <Button 
+            onClick={() => navigate('/auth')}
+            variant="gradient"
+            size="lg"
+            className="gap-2"
           >
             Start Creating Now
-          </button>
+            <ArrowRight className="h-4 w-4" />
+          </Button>
         </div>
       </section>
     </div>
